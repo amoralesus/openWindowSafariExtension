@@ -44,17 +44,8 @@ var handleMessage = function(msg) {
 
     case 'HereIsTheExtensionWindow!': {
       extensionWindow = msg.target;
-      var wl = msg.message;
-      if (wl.href === 'about:blank') {
-        var values = {
-          width  : npWinSize.x,
-          height : npWinSize.y,
-          left   : npWin.position.left,
-          top    : npWin.position.top
-        };
-        msg.target.page.dispatchMessage('ResizeYourself', values);
-        msg.target.url = extensionUrl;
-      }
+      msg.target.page.dispatchMessage('ResizeYourself', values);
+      msg.target.url = extensionUrl;
       break;
     }
 
